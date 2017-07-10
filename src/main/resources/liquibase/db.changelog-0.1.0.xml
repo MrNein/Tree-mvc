@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.2.xsd">
+
+    <changeSet logicalFilePath="changelog/db.changelog-0.1.0.xml" author="Mazitov Vadim" id="version-0.1.0">
+
+        <createTable tableName="node">
+            <column autoIncrement="true" name="id" type="bigint"/>
+            <column name="name" type="varchar(255)"/>
+            <column name="parent_id" type="bigint"/>
+        </createTable>
+
+        <addPrimaryKey tableName="node" columnNames="id"/>
+
+        <insert tableName="node">
+            <column name="name">root</column>
+            <column name="parent_id">0</column>
+        </insert>
+
+    </changeSet>
+
+</databaseChangeLog>

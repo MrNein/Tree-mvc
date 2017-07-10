@@ -1,0 +1,14 @@
+.spinner {
+    position: absolute; width: 10%; height: 10%;
+    background: url('/resources/images/preloader.gif') no-repeat;
+    background-size: 15px 15px;
+}
+.blue {
+    background-color: #00ffff;
+}
+.unvisible{
+    opacity:0;
+}
+.li-element{
+    list-style-type: none;
+}

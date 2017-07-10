@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.2.xsd">
+
+    <changeSet logicalFilePath="changelog/db.changelog-0.1.1.xml" author="Mazitov Vadim" id="version-0.1.1">
+
+        <createTable tableName="delete_nodes">
+            <column name="id" type="bigint"/>
+        </createTable>
+
+        <addPrimaryKey tableName="delete_nodes" columnNames="id"/>
+
+    </changeSet>
+
+</databaseChangeLog>
