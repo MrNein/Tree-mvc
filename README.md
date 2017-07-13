@@ -1,8 +1,6 @@
 # Клиент-Серверное приложение, отображающее древовидную структуру.
 
 
-![root image](https://image.ibb.co/ezWF0F/root.png)
-
 ![demo image](https://image.ibb.co/iLuqkF/tree_demo.gif)
 
 ## Функциональность
