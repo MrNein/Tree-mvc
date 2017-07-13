@@ -67,7 +67,6 @@ public class MainController {
     @PostMapping("/rename_node")
     public @ResponseBody boolean renameNode(@RequestBody final Node node)
     {
-        System.out.println(node);
         return nodeService.renameNode(node);
     }
 }
