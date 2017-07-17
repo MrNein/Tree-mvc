@@ -3,7 +3,7 @@ package ru.splat.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Service;
+
 import ru.splat.dao.NodeDAOCleaner;
 
 
@@ -11,15 +11,18 @@ import ru.splat.dao.NodeDAOCleaner;
  * Created by Vadim on 08.07.2017.
  */
 @EnableScheduling
-@Service
-public class TableCleaner {
+public class TableCleaner
+{
+    private static final int TIMESPACE = 120000;
 
+    
     @Autowired
     NodeDAOCleaner nodeDAOCleaner;
 
 
-    @Scheduled(fixedRate = 120000)
-    public void Clear(){
+    @Scheduled(fixedRate = TIMESPACE)
+    public void Clear()
+    {
         nodeDAOCleaner.clearNodes();
     }
 }

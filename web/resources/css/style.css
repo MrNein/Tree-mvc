@@ -12,3 +12,6 @@
 .li-element{
     list-style-type: none;
 }
+.node-name{
+    margin-left: 5px;
+}

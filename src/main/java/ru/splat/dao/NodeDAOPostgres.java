@@ -65,12 +65,12 @@ public class NodeDAOPostgres implements NodeDAO {
 
     @Override
     @Transactional
-    public boolean deleteNodes(int id)
+    public boolean deleteNodes(final Node node)
     {
         final String delete = "UPDATE node SET parent_id = -1 WHERE id = ? ";
         final String insert = "INSERT INTO delete_nodes (id) VALUES (?) ";
-        if (jdbcTemplate.update(delete, id) < 1) return false;
-        return (jdbcTemplate.update(insert, id) > 0);
+        if (jdbcTemplate.update(delete, node.getId()) < 1) return false;
+        return (jdbcTemplate.update(insert, node.getId()) > 0);
     }
 
     @Override
@@ -88,4 +88,11 @@ public class NodeDAOPostgres implements NodeDAO {
         return (jdbcTemplate.update(sql, parentId, id) > 0);
     }
 
+
+    @Override
+    public Node getNode(final long id) {
+        final String sql = "SELECT * FROM node WHERE id = ?";
+
+        return jdbcTemplate.query(sql, rm, Collections.singleton(id).toArray()).get(0);
+    }
 }

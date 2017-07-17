@@ -7,7 +7,8 @@ import java.util.List;
 /**
  * Created by Vadim on 06.07.2017.
  */
-public interface NodeDAO {
+public interface NodeDAO
+{
     List<Node> getChildNodes(final long id);
 
 
@@ -17,7 +18,7 @@ public interface NodeDAO {
     long addNode(final Node node);
 
 
-    boolean deleteNodes(final int id);
+    boolean deleteNodes(final Node node);
 
 
     boolean renameNode(final Node node);
@@ -25,4 +26,6 @@ public interface NodeDAO {
 
     boolean moveNode(long id, long parentId);
 
+
+    Node getNode(final long id);
 }

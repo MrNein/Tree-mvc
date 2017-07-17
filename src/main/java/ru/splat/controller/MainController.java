@@ -1,44 +1,56 @@
 package ru.splat.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import ru.splat.model.Node;
-import ru.splat.service.NodeService;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
+import ru.splat.model.Node;
+import ru.splat.model.json.MoveSessionWrapper;
+import ru.splat.model.json.RefreshNodeList;
+import ru.splat.model.json.NodeToJSON;
+import ru.splat.service.CommonService;
+import ru.splat.temp.NodeUpdateWrapper;
+
 
 /**
  * Created by Vadim on 06.07.2017.
  */
 @Controller
 @RequestMapping
-public class MainController {
-
+public class MainController
+{
     @Autowired
-    NodeService nodeService;
-
+    private CommonService commonService;
 
     @GetMapping(value = "/")
     public String getMainPage(Model model)
     {
-        model.addAttribute("root", nodeService.getRoot());
+        model.addAttribute("root", commonService.getRoot());
+        model.addAttribute("sessionId", commonService.getSessionId());
         return "index";
     }
+
 
     @GetMapping(value = "/root")
     public @ResponseBody
     Node getRoot()
     {
-        return nodeService.getRoot();
+        return commonService.getRoot();
     }
 
 
     @PostMapping(value = "/move_node")
-    public @ResponseBody boolean deleteNodes(@RequestParam("id") final long id, @RequestParam("parentId") final long parentId)
+    public @ResponseBody boolean moveNode(@RequestBody final MoveSessionWrapper node)
     {
-        return nodeService.moveNode(id, parentId);
+        return commonService.moveNode(node);
     }
 
 
@@ -46,27 +58,34 @@ public class MainController {
     public @ResponseBody
     List<Node> getChildNodes(@RequestParam("id") final long id)
     {
-        return nodeService.getChildNodes(id);
+        return commonService.getChildNodes(id);
     }
 
 
     @PostMapping("/node")
-    public @ResponseBody long addNode(@RequestBody final Node node)
+    public @ResponseBody long addNode(@RequestBody final NodeToJSON node)
     {
-        return nodeService.addNode(node);
+        return commonService.addNode(node);
     }
 
 
     @PostMapping("/delete_node")
-    public @ResponseBody boolean deleteNodes(@RequestParam("id") final Integer id)
+    public @ResponseBody boolean deleteNodes(@RequestBody final NodeToJSON node)
     {
-        return nodeService.deleteNodes(id);
+        return commonService.deleteNodes(node);
     }
 
 
     @PostMapping("/rename_node")
-    public @ResponseBody boolean renameNode(@RequestBody final Node node)
+    public @ResponseBody boolean renameNode(@RequestBody final NodeToJSON node)
     {
-        return nodeService.renameNode(node);
+        return commonService.renameNode(node);
+    }
+
+
+    @PostMapping("/refresh")
+    public  @ResponseBody List<NodeUpdateWrapper> getFreshTreeData(@RequestBody final RefreshNodeList list)
+    {
+        return commonService.returnUpdatedNodes(list);
     }
 }

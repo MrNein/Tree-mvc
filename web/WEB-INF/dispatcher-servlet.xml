@@ -10,6 +10,10 @@
     <bean id="nodeDAOPostgres" class="ru.splat.dao.NodeDAOPostgres"/>
     <bean id="nodeService" class="ru.splat.service.NodeServiceImpl"/>
     <bean id="nodeDAOCleanerPostgres" class="ru.splat.dao.NodeDAOCleanerPostgres"/>
+    <bean id="tableCleaner" class="ru.splat.service.TableCleaner"/>
+    <bean id="refreshService" class="ru.splat.service.RefreshServiceImpl"/>
+    <bean id="commonService" class="ru.splat.service.CommonServiceImpl"/>
+    <bean id="sessionService" class="ru.splat.service.SessionServiceImpl"/>
 
     <import resource="spring/spring-jdbc.xml"/>
 

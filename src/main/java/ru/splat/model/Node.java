@@ -1,11 +1,9 @@
 package ru.splat.model;
 
+
 /**
  * Created by Vadim on 06.07.2017.
  */
-
-
-
 public class Node
 {
 
@@ -16,6 +14,17 @@ public class Node
 
 
     private String name;
+
+
+    public Node(){}
+
+
+    public Node(Long id, String name, Long parentId)
+    {
+        this.id = id;
+        this.parentId = parentId;
+        this.name = name;
+    }
 
 
     public Long getId()

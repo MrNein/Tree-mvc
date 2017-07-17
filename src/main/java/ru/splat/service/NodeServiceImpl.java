@@ -1,15 +1,18 @@
 package ru.splat.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+
 import ru.splat.dao.NodeDAO;
 import ru.splat.model.Node;
 
-import java.util.List;
 
 /**
  * Created by Vadim on 06.07.2017.
  */
-public class NodeServiceImpl implements NodeService {
+public class NodeServiceImpl implements NodeService
+{
     @Autowired
     NodeDAO nodeDAO;
 
@@ -36,9 +39,9 @@ public class NodeServiceImpl implements NodeService {
 
 
     @Override
-    public boolean deleteNodes(final int id)
+    public boolean deleteNodes(final Node node)
     {
-        return nodeDAO.deleteNodes(id);
+        return nodeDAO.deleteNodes(node);
     }
 
 
@@ -48,9 +51,17 @@ public class NodeServiceImpl implements NodeService {
         return nodeDAO.renameNode(node);
     }
 
+
     @Override
-    public boolean moveNode(long id, long parentId)
+    public boolean moveNode(final long id, final long parentId)
     {
         return nodeDAO.moveNode(id, parentId);
+    }
+
+
+    @Override
+    public Node getNode(final long id)
+    {
+        return nodeDAO.getNode(id);
     }
 }

@@ -18,7 +18,7 @@
 </head>
 <body>
 
-<ul>
+<ul id="${sessionId}" class = "sessionId">
   <li id="${root.id}" class="root li-element">
     <span class="arrow glyphicon glyphicon-menu-right" aria-hidden="true"></span>
     <span class="glyphicon glyphicon-folder-close" aria-hidden="true" ondrop="drop(event, this)" ondragover="allowDrop(event)"></span>
@@ -50,6 +50,7 @@
       <form class="form-add">
         <input name="name" type="text" class="form-control" required/>
         <input name="id" type="hidden" value ="" />
+        <input name="parentId" type="hidden" value=""/>
 
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -82,7 +83,21 @@
   </div>
 </div>
 
-
+<div id="myModalBox" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Заголовок модального окна -->
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title">Houston we have a problem</h4>
+      </div>
+      <!-- Основное содержимое модального окна -->
+      <div class="modal-body">
+        You session is too old please reload page
+      </div>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
